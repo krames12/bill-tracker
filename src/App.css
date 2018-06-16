@@ -1,3 +1,7 @@
+body {
+  box-sizing: border-box;
+}
+
 .App-header {
   background-color: white;
   padding: 20px;
@@ -14,4 +18,34 @@
   max-width: 900px;
   min-width: 320px;
   padding: 15px;
+}
+
+.bill-item {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  border: 1px solid #E0E0E0;
+  padding: 5px 10px;
+  line-height: 1em;
+}
+
+.bill-item p {
+  display: inline-block;
+  padding: 5px;
+}
+
+#button-add-bill {
+  display: block;
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px solid #3F88C5;
+  color: #3F88C5;
+  font-size: 1.2em;
+  margin: 20px auto;
+  transition: all 0.2s ease-in-out;
+}
+
+#button-add-bill:hover {
+  background-color: #3F88C5;
+  color: white;
 }

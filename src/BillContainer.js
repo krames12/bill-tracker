@@ -10,7 +10,7 @@ class BillContainer extends Component {
           'id': 1,
           'name': 'Rent',
           'cost': 800,
-          'completed': false
+          'completed': true
         },
         {
           'id': 2,
@@ -28,14 +28,22 @@ class BillContainer extends Component {
     }
   }
 
+  billPayed = (bill) => {
+
+  }
+
   render() {
     return(
       <div id='bills-container'>
         {
+          this.state.bills && this.state.bills.length ?
           this.state.bills.map( (bill) => (
             <Bill key={bill.id} {...bill} />
           ))
+          :
+          <p>You have no bills</p>
         }
+        <button id="button-add-bill">Add a bill</button>
       </div>
     )
   };
