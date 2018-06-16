@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Bill from './Bill'
+import BillEdit from './BillEdit'
 
 class BillContainer extends Component {
   constructor(props) {
@@ -28,8 +29,16 @@ class BillContainer extends Component {
     }
   }
 
-  billPayed = (bill) => {
+  addBill = (bill) => {
+    let currentBills = this.state.bills;
+    let newBills = currentBills.push({
+      'id': currentBills.length++,
+      'name': bill.name,
+      'cost': bill.cost,
+      'completed': false
+    })
 
+    this.setState({ bills: newBills })
   }
 
   render() {
@@ -43,6 +52,7 @@ class BillContainer extends Component {
           :
           <p>You have no bills</p>
         }
+        <BillEdit clickHandler={ () => this.addBill()} />
         <button id="button-add-bill">Add a bill</button>
       </div>
     )
