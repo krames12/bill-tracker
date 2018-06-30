@@ -3,6 +3,15 @@ import React, { Component } from 'react'
 class BillEdit extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      "name": null,
+      "amount": null
+    }
+  }
+
+  handleChange = event => {
+    this.setState({ [event.target.id]: event.target.value })
   }
 
   render() {
@@ -11,14 +20,18 @@ class BillEdit extends Component {
         <p className="bill-name">
           <input
             type="text"
-            // value={this.props.name?this.props.name:''}
+            id="name"
+            // value={this.state.name?this.state.name:''}
             placeholder="Name"
+            onChange={this.handleChange}
           />
         </p>
         <p className="bill-cost">
           $<input
             type="text"
-            value={this.props.cost?this.props.cost.toFixed(2):'0.00'}
+            id="amount"
+            // value={this.state.amount?this.state.amount.toFixed(2):'0.00'}
+            onChange={this.handleChange}
           />
         </p>
         <button onClick={ () => this.props.clickHandler() }>Save</button>

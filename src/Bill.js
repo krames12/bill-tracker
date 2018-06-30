@@ -7,6 +7,7 @@ export default (data) => (
     <input
       type="checkbox"
       checked={data.completed ? 'checked' : ''}
+      onChange={ () => { console.log("checked") } }
     />
   </div>
 )
