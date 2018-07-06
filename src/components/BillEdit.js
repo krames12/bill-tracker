@@ -6,7 +6,7 @@ class BillEdit extends Component {
 
     this.state = {
       "name": null,
-      "amount": null
+      "cost": null
     }
   }
 
@@ -29,12 +29,12 @@ class BillEdit extends Component {
         <p className="bill-cost">
           $<input
             type="text"
-            id="amount"
+            id="cost"
             // value={this.state.amount?this.state.amount.toFixed(2):'0.00'}
             onChange={this.handleChange}
           />
         </p>
-        <button onClick={ () => this.props.clickHandler() }>Save</button>
+        <button onClick={ () => this.props.clickHandler(this.state) }>Save</button>
       </div>
     )
   }

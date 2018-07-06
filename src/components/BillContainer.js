@@ -30,9 +30,9 @@ class BillContainer extends Component {
   }
 
   addBill = (bill) => {
-    let currentBills = this.state.bills;
-    let newBills = currentBills.push({
-      'id': currentBills.length++,
+    let newBills = this.state.bills;
+    newBills.push({
+      'id': newBills.length + 1,
       'name': bill.name,
       'cost': bill.cost,
       'completed': false
@@ -52,7 +52,7 @@ class BillContainer extends Component {
           :
           <p>You have no bills</p>
         }
-        <BillEdit clickHandler={ () => this.addBill()} />
+        <BillEdit clickHandler={this.addBill} />
         <button id="button-add-bill">Add a bill</button>
       </div>
     )
