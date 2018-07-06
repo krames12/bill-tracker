@@ -47,7 +47,7 @@ class BillContainer extends Component {
         {
           this.state.bills && this.state.bills.length ?
           this.state.bills.map( (bill) => (
-            <Bill key={bill.id} {...bill} />
+            <Bill key={bill.id} clickHandler={this.toggleBillComplete} {...bill} />
           ))
           :
           <p>You have no bills</p>
