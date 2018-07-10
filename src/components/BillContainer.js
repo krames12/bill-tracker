@@ -41,13 +41,25 @@ class BillContainer extends Component {
     this.setState({ bills: newBills })
   }
 
+  removeBill = (billId) => {
+    let newBills = this.state.bills.filter( bill => {
+      return billId !== bill.id ? bill : false
+    } )
+
+    this.setState({ "bills": newBills })
+  }
+
   render() {
     return(
       <div id='bills-container'>
         {
           this.state.bills && this.state.bills.length ?
           this.state.bills.map( (bill) => (
-            <Bill key={bill.id} clickHandler={this.toggleBillComplete} {...bill} />
+            <Bill
+              key={bill.id}
+              clickHandler={this.removeBill}
+              {...bill}
+            />
           ))
           :
           <p>You have no bills</p>

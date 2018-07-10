@@ -30,6 +30,7 @@ class BillEdit extends Component {
 
     return (
       <div className="bill-item">
+        <p></p>
         <p className="bill-name">
           <input
             type="text"
@@ -39,14 +40,15 @@ class BillEdit extends Component {
             onChange={this.handleChange}
           />
         </p>
-        <p className="bill-cost">
-          $<input
+        <div className="bill-cost">
+          <p>$</p>
+          <input
             type="text"
             id="cost"
             value={this.state.cost?this.state.cost:0}
             onChange={this.handleChange}
           />
-        </p>
+        </div>
         <button
           onClick={this.handleSubmit}
           disabled={!canSubmit}
