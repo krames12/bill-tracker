@@ -5,13 +5,25 @@ class BillEdit extends Component {
     super(props);
 
     this.state = {
-      "name": null,
-      "cost": null
+      "name": '',
+      "cost": 0
     }
+  }
+
+  validateInputs = event => {
+    //
   }
 
   handleChange = event => {
     this.setState({ [event.target.id]: event.target.value })
+  }
+
+  handleSubmit = () => {
+    let verify = this.validateInputs;
+    // check verify status to add bill
+
+    this.props.clickHandler(this.state)
+    this.setState({ "name": '', "cost": 0 })
   }
 
   render() {
@@ -21,7 +33,7 @@ class BillEdit extends Component {
           <input
             type="text"
             id="name"
-            // value={this.state.name?this.state.name:''}
+            value={this.state.name?this.state.name:''}
             placeholder="Name"
             onChange={this.handleChange}
           />
@@ -30,11 +42,11 @@ class BillEdit extends Component {
           $<input
             type="text"
             id="cost"
-            // value={this.state.amount?this.state.amount.toFixed(2):'0.00'}
+            value={this.state.cost?this.state.cost:''}
             onChange={this.handleChange}
           />
         </p>
-        <button onClick={ () => this.props.clickHandler(this.state) }>Save</button>
+        <button onClick={this.handleSubmit}>Save</button>
       </div>
     )
   }

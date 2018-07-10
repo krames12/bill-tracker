@@ -15,8 +15,8 @@ class Bill extends React.Component {
   render() {
     return (
       <div className="bill-item">
-        <p className="bill-name">{this.props.name}</p>
-        <p className="bill-cost">${this.props.cost}</p>
+        <p className={`bill-name ${this.state.completed?'paid-bill':''}`}>{this.props.name}</p>
+        <p className={`bill-cost ${this.state.completed?'paid-bill':''}`}>${this.props.cost}</p>
         <input
           type="checkbox"
           checked={this.state.completed ? 'checked' : ''}
