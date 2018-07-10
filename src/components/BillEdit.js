@@ -10,23 +10,24 @@ class BillEdit extends Component {
     }
   }
 
-  validateInputs = event => {
-    //
-  }
-
   handleChange = event => {
     this.setState({ [event.target.id]: event.target.value })
   }
 
   handleSubmit = () => {
-    let verify = this.validateInputs;
-    // check verify status to add bill
-
     this.props.clickHandler(this.state)
     this.setState({ "name": '', "cost": 0 })
   }
 
   render() {
+    const { name, cost } = this.state
+
+    // Validates that name is filled out and that cost is a nubmer
+    const canSubmit =
+      name.length > 0 &&
+      cost.length > 0 &&
+      !isNaN(cost)
+
     return (
       <div className="bill-item">
         <p className="bill-name">
@@ -42,11 +43,16 @@ class BillEdit extends Component {
           $<input
             type="text"
             id="cost"
-            value={this.state.cost?this.state.cost:''}
+            value={this.state.cost?this.state.cost:0}
             onChange={this.handleChange}
           />
         </p>
-        <button onClick={this.handleSubmit}>Save</button>
+        <button
+          onClick={this.handleSubmit}
+          disabled={!canSubmit}
+        >
+          Save
+        </button>
       </div>
     )
   }
