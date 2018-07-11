@@ -65,7 +65,7 @@ class BillContainer extends Component {
           <p>You have no bills</p>
         }
         <BillEdit clickHandler={this.addBill} />
-        <button id="button-add-bill">Add a bill</button>
+        {/* <button id="button-add-bill">Add a bill</button> */}
       </div>
     )
   };

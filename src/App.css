@@ -1,6 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+
 body {
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
 }
+/* Utility Classes */
+
+.paid-bill {
+  text-decoration: line-through;
+}
+
+.icon {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* General Styles */
 
 .App-header {
   background-color: white;
@@ -13,27 +28,24 @@ body {
   font-size: 1.5em;
 }
 
-.paid-bill {
-  text-decoration: line-through;
-}
-
-.icon {
-  cursor: pointer;
-  user-select: none;
-}
-
-#bills-container {
+#container {
   margin: 0 auto;
   max-width: 900px;
   min-width: 320px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Bill styles */
+
+#bills-container {
   padding: 15px;
 }
 
 .bill-item {
   display: grid;
-  grid-template-columns: 20px 3fr 1fr 1fr;
-  border: 1px solid #E0E0E0;
-  padding: 5px 10px;
+  grid-template-columns: 24px 3fr 1fr 1fr;
+  padding: 5px;
   line-height: 1em;
 }
 

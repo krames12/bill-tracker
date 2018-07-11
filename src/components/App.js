@@ -9,7 +9,9 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Bill Tracker (Come up with a better name please)</h1>
         </header>
-        <BillContainer />
+        <div id="container">
+          <BillContainer />
+        </div>
       </div>
     );
   }
