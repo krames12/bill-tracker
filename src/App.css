@@ -54,6 +54,10 @@ body {
   padding: 5px;
 }
 
+.completed-input {
+  visibility: hidden;
+}
+
 #button-add-bill {
   display: block;
   cursor: pointer;
