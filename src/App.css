@@ -3,6 +3,8 @@
 body {
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
+  color: #444;
+  font-size: 1em;
 }
 /* Utility Classes */
 
@@ -47,11 +49,20 @@ body {
   grid-template-columns: 24px 3fr 1fr 1fr;
   padding: 5px;
   line-height: 1em;
+  align-items: center;
 }
 
 .bill-item p {
   display: inline-block;
   padding: 5px;
+}
+
+.bill-name {
+  margin-left: 1em;
+}
+
+.bill-cost {
+  text-align: right;
 }
 
 .completed-input {

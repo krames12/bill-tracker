@@ -25,22 +25,24 @@ class Bill extends React.Component {
         <p className={`bill-name ${this.state.completed?'paid-bill':''}`}>
         {this.props.name}</p>
         <p className={`bill-cost ${this.state.completed?'paid-bill':''}`}>${this.props.cost}</p>
-        <input
-          type="checkbox"
-          id={`bill-${this.props.id}`}
-          className="completed-input"
-          checked={this.state.completed ? 'checked' : ''}
-          onChange={this.toggleComplete}
-        />
-        <label
-          for={`bill-${this.props.id}`}
-          className="icon'"
-        >
-          { this.state.completed ?
-              <CheckSquare /> :
-              <Square />
-          }
-        </label>
+        <div>
+          <input
+            type="checkbox"
+            id={`bill-${this.props.id}`}
+            className="completed-input"
+            checked={this.state.completed ? 'checked' : ''}
+            onChange={this.toggleComplete}
+          />
+          <label
+            for={`bill-${this.props.id}`}
+            className="icon"
+          >
+            { this.state.completed ?
+                <CheckSquare /> :
+                <Square />
+            }
+          </label>
+        </div>
       </div>
     )
   }
