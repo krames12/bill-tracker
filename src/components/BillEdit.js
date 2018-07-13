@@ -6,7 +6,7 @@ class BillEdit extends Component {
 
     this.state = {
       "name": '',
-      "cost": 0
+      "cost": '',
     }
   }
 
@@ -16,7 +16,7 @@ class BillEdit extends Component {
 
   handleSubmit = () => {
     this.props.clickHandler(this.state)
-    this.setState({ "name": '', "cost": 0 })
+    this.setState({ "name": '', "cost": '' })
   }
 
   render() {
@@ -29,31 +29,44 @@ class BillEdit extends Component {
       !isNaN(cost)
 
     return (
-      <div className="bill-item">
-        <p></p>
-        <p className="bill-name">
+      <div className="bill-edit-container">
+        <h3 className="form-title">Add New Bill</h3>
+        <div className="bill-name edit-bill-name">
+          <label
+            htmlFor="name"
+            className="form-label"
+          >
+            Name
+          </label>
           <input
             type="text"
             id="name"
+            className="form-input name-input"
             value={this.state.name?this.state.name:''}
-            placeholder="Name"
             onChange={this.handleChange}
           />
-        </p>
-        <div className="bill-cost">
-          <p>$</p>
+        </div>
+        <div className="bill-cost edit-bill-cost">
+          <label
+            htmlFor="cost"
+            className="form-label"
+          >
+            Amount
+          </label>
           <input
             type="text"
             id="cost"
-            value={this.state.cost?this.state.cost:0}
+            className="form-input cost-input"
+            value={this.state.cost?this.state.cost:''}
             onChange={this.handleChange}
           />
         </div>
         <button
+          id="button-add-bill"
           onClick={this.handleSubmit}
           disabled={!canSubmit}
         >
-          Save
+          Add Bill
         </button>
       </div>
     )

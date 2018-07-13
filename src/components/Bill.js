@@ -1,5 +1,10 @@
 import React from 'react'
-import { Trash2, Square, CheckSquare } from 'react-feather'
+import {
+  Trash2,
+  Square,
+  CheckSquare,
+  MoreVertical,
+} from 'react-feather'
 
 
 class Bill extends React.Component {
@@ -25,7 +30,7 @@ class Bill extends React.Component {
         <p className={`bill-name ${this.state.completed?'paid-bill':''}`}>
         {this.props.name}</p>
         <p className={`bill-cost ${this.state.completed?'paid-bill':''}`}>${this.props.cost}</p>
-        <div>
+        <div className="completed-container">
           <input
             type="checkbox"
             id={`bill-${this.props.id}`}
@@ -34,8 +39,8 @@ class Bill extends React.Component {
             onChange={this.toggleComplete}
           />
           <label
-            for={`bill-${this.props.id}`}
-            className="icon"
+            htmlFor={`bill-${this.props.id}`}
+            className="completed-icon"
           >
             { this.state.completed ?
                 <CheckSquare /> :
