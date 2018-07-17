@@ -14,16 +14,12 @@ class Bill extends React.Component {
     this.state = { 'completed': this.props.completed }
   }
 
-  toggleComplete = () => {
-    this.setState({ 'completed': !this.state.completed })
-  }
-
   render() {
     return (
       <div className="bill-item">
         <p
           className="icon"
-          onClick={() => this.props.clickHandler(this.props.id)}
+          onClick={() => this.props.deleteHandler(this.props.id)}
         >
           <Trash2 />
         </p>
@@ -36,7 +32,7 @@ class Bill extends React.Component {
             id={`bill-${this.props.id}`}
             className="completed-input"
             checked={this.state.completed ? 'checked' : ''}
-            onChange={this.toggleComplete}
+            onChange={this.props.completeHandler}
           />
           <label
             htmlFor={`bill-${this.props.id}`}

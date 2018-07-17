@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import dummyBillData from '../constants/dummyBillData'
 
 const { Consumer, Provider } = React.createContext('bills')
 
 class BillsProvider extends Component {
   state = {
-    bills: []
+    bills: dummyBillData
   }
 
   addBill = (bill) => {
@@ -19,12 +20,13 @@ class BillsProvider extends Component {
 
   completeBill = (bill) => {
     // Update
-    console.log("Completing bill: ", bill)
+    console.log("Completing bill: ", bill.target.id)
   }
 
   render() {
     return (
       <Provider value={{
+        bills: this.state.bills,
         actions: {
           addBill: this.addBill,
           removeBill: this.removeBill,

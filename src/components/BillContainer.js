@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Bill from './Bill'
 import BillEdit from './BillEdit'
-import BillsConsumer from './BillsContext'
+import { BillsConsumer } from './BillsContext'
 
 import dummyBillData from '../constants/dummyBillData'
 
@@ -36,18 +36,21 @@ class BillContainer extends Component {
   render() {
     return(
       <div id='bills-container'>
-        {
-          this.state.bills && this.state.bills.length ?
-          this.state.bills.map( (bill) => (
-            <Bill
-              key={bill.id}
-              clickHandler={this.removeBill}
-              {...bill}
-            />
-          ))
-          :
-          <p>You have no bills</p>
-        }
+        <BillsConsumer.Consumer>
+          { ({ bills, actions }) =>
+            bills && bills.length ?
+            bills.map( (bill) => (
+              <Bill
+                key={bill.id}
+                deleteHandler={actions.removeBill}
+                completeHandler={actions.completeBill}
+                {...bill}
+              />
+            ))
+            :
+            <p>You have no bills</p>
+          }
+        </BillsConsumer.Consumer>
       </div>
     )
   };
