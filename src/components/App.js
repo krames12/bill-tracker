@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import '../App.css'
 import BillContainer from './BillContainer'
+import BillEdit from './BillEdit'
+import BillsProvider from './BillsContext'
 
 class App extends Component {
   render() {
@@ -10,7 +12,10 @@ class App extends Component {
           <h1 className="App-title">Bill Tracker (Come up with a better name please)</h1>
         </header>
         <div id="container">
-          <BillContainer />
+          <BillsProvider>
+            <BillContainer />
+            <BillEdit />
+          </BillsProvider>
         </div>
       </div>
     );

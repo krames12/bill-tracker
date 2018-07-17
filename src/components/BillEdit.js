@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BillsConsumer } from './BillsContext'
 
 class BillEdit extends Component {
   constructor(props) {
@@ -14,8 +15,9 @@ class BillEdit extends Component {
     this.setState({ [event.target.id]: event.target.value })
   }
 
-  handleSubmit = () => {
-    this.props.clickHandler(this.state)
+  handleSubmit = (callback) => {
+    callback(this.state)
+    // this.props.clickHandler(this.state)
     this.setState({ "name": '', "cost": '' })
   }
 
@@ -61,13 +63,15 @@ class BillEdit extends Component {
             onChange={this.handleChange}
           />
         </div>
-        <button
-          id="button-add-bill"
-          onClick={this.handleSubmit}
-          disabled={!canSubmit}
-        >
-          Add Bill
-        </button>
+        <BillsConsumer.Consumer>
+          { ({ actions }) => ( <button
+            id="button-add-bill"
+            onClick={() => this.handleSubmit(actions.addBill) }
+            disabled={!canSubmit}
+          >
+            Add Bill
+          </button> ) }
+        </BillsConsumer.Consumer>
       </div>
     )
   }

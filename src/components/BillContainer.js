@@ -1,31 +1,15 @@
 import React, { Component } from 'react'
 import Bill from './Bill'
 import BillEdit from './BillEdit'
+import BillsConsumer from './BillsContext'
+
+import dummyBillData from '../constants/dummyBillData'
 
 class BillContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      'bills': [
-        {
-          'id': 1,
-          'name': 'Rent',
-          'cost': 800,
-          'completed': true
-        },
-        {
-          'id': 2,
-          'name': 'Car',
-          'cost': 200,
-          'completed': false
-        },
-        {
-          'id': 3,
-          'name': 'Electric',
-          'cost': 132,
-          'completed': false
-        }
-      ]
+      bills: dummyBillData
     }
   }
 
@@ -64,8 +48,6 @@ class BillContainer extends Component {
           :
           <p>You have no bills</p>
         }
-        <BillEdit clickHandler={this.addBill} />
-        {/* <button id="button-add-bill">Add a bill</button> */}
       </div>
     )
   };
