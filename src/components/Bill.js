@@ -10,8 +10,6 @@ import {
 class Bill extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state = { 'completed': this.props.completed }
   }
 
   render() {
@@ -23,22 +21,26 @@ class Bill extends React.Component {
         >
           <Trash2 />
         </p>
-        <p className={`bill-name ${this.state.completed?'paid-bill':''}`}>
+        <p className={`bill-name ${this.props.completed?'paid-bill':''}`}>
         {this.props.name}</p>
-        <p className={`bill-cost ${this.state.completed?'paid-bill':''}`}>${this.props.cost}</p>
+        <p className={`bill-cost ${this.props.completed?'paid-bill':''}`}>${this.props.cost}</p>
         <div className="completed-container">
           <input
             type="checkbox"
             id={`bill-${this.props.id}`}
             className="completed-input"
-            checked={this.state.completed ? 'checked' : ''}
-            onChange={this.props.completeHandler}
+            checked={this.props.completed ? 'checked' : ''}
+            onChange={
+              () => this.props.completeHandler({
+                ...this.props
+               })
+            }
           />
           <label
             htmlFor={`bill-${this.props.id}`}
             className="completed-icon"
           >
-            { this.state.completed ?
+            { this.props.completed ?
                 <CheckSquare /> :
                 <Square />
             }

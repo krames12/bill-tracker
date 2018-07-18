@@ -1,26 +1,74 @@
 import React, { Component } from 'react'
-import dummyBillData from '../constants/dummyBillData'
+import firebase from '../constants/firebase-config'
 
 const { Consumer, Provider } = React.createContext('bills')
 
 class BillsProvider extends Component {
-  state = {
-    bills: dummyBillData
+  constructor() {
+    super()
+    this.state = {
+      bills: []
+    }
+
+    this.billsRef = firebase.database().ref('bills');
+  }
+
+  componentDidMount() {
+    this.billsRef.on('value', (snapshot) => {
+      let newBills = []
+      snapshot.forEach( child => {
+        let bill = child.val()
+        newBills.push({
+          'id': child.key,
+          ...bill
+        })
+      })
+
+      // snapshot.forEach( child => console.log(child.val().name))
+      this.setState({bills: newBills})
+    })
+
   }
 
   addBill = (bill) => {
-    // Create
     console.log("Adding bill: ", bill)
+    this.billsRef.push({
+      ...bill,
+      "completed": false,
+    })
+      .then(() => console.log("Bill was successfully added"))
+      .catch((error) => console.error("Firebase Error:", error) )
   }
 
   removeBill = (bill) => {
-    // Remove
-    console.log("Removing bill: ", bill)
+    this.billsRef.child(bill).remove()
+      .then( () => console.log(`successfully deleted ${bill.id}`) )
+      .catch( (error) => console.error("Firebase Error: ".error) )
   }
 
   completeBill = (bill) => {
+    console.log("I GOT CLICKED");
     // Update
-    console.log("Completing bill: ", bill.target.id)
+    this.billsRef.child(bill.id)
+      .update({ 'completed': !bill.completed })
+      .then( () => {
+        console.log("i dun did the update")
+        let newBillsList = this.state.bills.map( item => {
+          if(item.id === bill.id) {
+            return {
+              'completed': !bill.completed,
+              ...item,
+            }
+          } else {
+            return item
+          }
+        } )
+
+        console.log("newBillsList", newBillsList)
+
+        this.setState({ bills: newBillsList })
+      } )
+      .catch( (error) => console.error("Firebase Error: ".error) )
   }
 
   render() {
