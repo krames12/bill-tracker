@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import {
+  Link,
+  withRouter,
+} from 'react-router-dom'
+
+import * as auth from '../controllers/AuthController'
 
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
@@ -12,10 +17,10 @@ const INITIAL_STATE = {
   "error": null,
 }
 
-const SignUp = () =>
+const SignUp = ({ history }) =>
   <div>
     <h1>Sign Up</h1>
-    <SignUpForm />
+    <SignUpForm history={history} />
   </div>
 
 class SignUpForm extends Component {
@@ -26,7 +31,25 @@ class SignUpForm extends Component {
 
   onSubmit = event => {
     event.preventDefault();
+
+    const {
+      email,
+      passwordOne,
+    } = this.state
+
+    const {
+      history
+    } = this.props
+
     console.log(this.state)
+    auth.doCreateUserWithEmailAndPassword(email, passwordOne)
+      .then( () => {
+        this.setState({ ...INITIAL_STATE })
+        history.push('/')
+      })
+      .catch( error => {
+        this.setState(byPropKey("error", error))
+      })
   }
 
   render() {
@@ -79,4 +102,4 @@ export const SignUpLink = () =>
     <Link to="/sign-up">Sign Up</Link>
   </p>
 
-export default SignUp
+export default withRouter(SignUp)
