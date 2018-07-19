@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import { SignUpLink } from './SignUp'
+import { PasswordResetLink } from './PasswordReset'
 
 const SignInPage = () =>
   <div>
     <h1>Sign In</h1>
     <SignInForm />
     <SignUpLink />
+    <PasswordResetLink />
   </div>
 
 const byPropKey = (propertyName, value) => () => ({
